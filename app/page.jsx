@@ -1,10 +1,12 @@
+import Feed from "@components/feed";
+
 const Home = () => {
   return (
-    <section classNam="w-full flex-center flex-col">
+    <section className="w-full flex-center flex-col">
       <h1 className="head_text text-center">
         Discover & Share
         <br className="max-md:hidden" />
-        <span className="orange_gradient text-center">Ai-powered prompts </span>
+        <span className="orange_gradient text-center">AI-powered prompts </span>
       </h1>
 
       <p className="desc text-center">
@@ -13,6 +15,7 @@ const Home = () => {
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
       </p>
+      <Feed />
     </section>
   );
 };
