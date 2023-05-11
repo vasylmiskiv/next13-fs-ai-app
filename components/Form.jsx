@@ -27,15 +27,17 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         <label htmlFor="">
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Tag
-            <span className="font-normal"> (#product, #webdev, #ideas)</span>
           </span>
-          <input
-            value={post.tag}
-            onChange={(e) => setPost({ ...post, tag: e.target.value })}
-            placeholder="#some tag..."
-            required
-            className="form_input"
-          ></input>
+          <div className="flex items-center gap-2">
+            <span className="ml-2 pt-2 text-lg text-gray-400">#</span>
+            <input
+              value={post.tag}
+              onChange={(e) => setPost({ ...post, tag: e.target.value })}
+              placeholder="product, webdev, ideas"
+              required
+              className="form_input"
+            />
+          </div>
         </label>
         <div className="flex-end mx-3 mb-5 gap-4">
           <Link href="/" className="text-gray-500 text-sm">

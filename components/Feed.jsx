@@ -33,9 +33,7 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
-  const handleSearchChange = (e) => {
-    
-  };
+  const handleSearchChange = (e) => {};
 
   return (
     <section className="feed">
@@ -50,7 +48,7 @@ const Feed = () => {
         />
       </form>
 
-      <PromptCardList data={posts} handleTagClick={() => {}} />
+      <PromptCardList data={posts} handleTagClick={() => console.log(123)} />
     </section>
   );
 };
