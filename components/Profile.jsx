@@ -2,7 +2,7 @@ import PromptCard from "./PromptCard";
 
 const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
   return (
-    <secion className="w-full">
+    <section className="w-full">
       <h1 className="head_text text-left blue_gradient">{name} Profile</h1>
       <p className="desc text-left">{desc}</p>
 
@@ -16,7 +16,12 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
           />
         ))}
       </div>
-    </secion> 
+      {!data.length && (
+        <div className="text-xl font-semibold text-center">
+          List of posts is empty
+        </div>
+      )}
+    </section>
   );
 };
 

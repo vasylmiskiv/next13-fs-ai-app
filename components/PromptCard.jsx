@@ -72,8 +72,9 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
               src="/assets/icons/trash.svg"
               width={19}
               height={19}
-              nClick={handleDelete}
+              onClick={handleDelete}
               color="green"
+              alt="trash"
             />
           </div>
         </div>
