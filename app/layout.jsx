@@ -4,7 +4,8 @@ import Provider from "@components/Provider";
 
 export const metadata = {
   title: "PromptAI",
-  description: "Discover & Share AI Prompts",
+  description:
+    "Next.js v13 SSR Full stack application | Stack: Next.js v13, Next-auth, Next APIs, mongoose, tailwindCSS",
 };
 
 const RootLayout = ({ children }) => {
