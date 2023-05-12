@@ -30,10 +30,31 @@ const Feed = () => {
       setPosts(data);
     };
 
-    fetchPosts();
-  }, []);
+    if (!searchText) {
+      fetchPosts();
+    } else {
+      const fetchPostsByKeywords = async () => {
+        const response = await fetch(`/api/prompt`, {
+          method: "POST",
+          body: JSON.stringify({
+            keywords: searchText,
+          }),
+        });
 
-  const handleSearchChange = (e) => {};
+        const data = await response.json();
+
+        setPosts(data);
+      };
+
+      const delayDebounceFn = setTimeout(() => {
+        if (searchText) {
+          fetchPostsByKeywords();
+        }
+      }, 1000);
+
+      return () => clearTimeout(delayDebounceFn);
+    }
+  }, [searchText]);
 
   return (
     <section className="feed">
@@ -41,8 +62,7 @@ const Feed = () => {
         <input
           type="text"
           value={searchText}
-          onChange={handleSearchChange}
-          required
+          onChange={(e) => setSearchText(e.target.value)}
           placeholder="Search for a tag or a username"
           className="search_input"
         />

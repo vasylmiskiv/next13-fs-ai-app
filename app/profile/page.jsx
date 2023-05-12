@@ -14,6 +14,12 @@ const ProfilePage = () => {
   const router = useRouter();
 
   useEffect(() => {
+    if (!session) {
+      router.push("/");
+    }
+  }, [session]);
+
+  useEffect(() => {
     const fetchProfileData = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();

@@ -25,6 +25,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             loader={() => post?.author.image}
             src={post?.author.image}
             alt="user"
+            unoptimized={true}
             width={40}
             height={40}
             className="rounded-full object-contain
