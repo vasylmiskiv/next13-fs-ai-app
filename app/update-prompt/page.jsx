@@ -6,6 +6,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Form from "@components/Form";
 
 const EditPrompt = () => {
+  const [isLoadingData, setIsLoadingData] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     prompt: "",
@@ -18,6 +19,7 @@ const EditPrompt = () => {
 
   useEffect(() => {
     const fetchPrompt = async () => {
+      setIsLoadingData(true);
       const response = await fetch(`api/prompt/${promptId}`);
 
       const data = await response.json();
@@ -26,6 +28,7 @@ const EditPrompt = () => {
         prompt: data.prompt,
         tag: data.tag,
       });
+      setIsLoadingData(false);
     };
 
     if (promptId) fetchPrompt();
@@ -64,6 +67,7 @@ const EditPrompt = () => {
       setPost={setPost}
       submitting={submitting}
       handleSubmit={updatePrompt}
+      isLoading={isLoadingData}
     />
   );
 };

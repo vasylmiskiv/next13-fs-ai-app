@@ -6,6 +6,9 @@ export const metadata = {
   title: "PromptAI",
   description:
     "Next.js v13 SSR Full stack application | Stack: Next.js v13, Next-auth, Next APIs, mongoose, tailwindCSS",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 const RootLayout = ({ children }) => {

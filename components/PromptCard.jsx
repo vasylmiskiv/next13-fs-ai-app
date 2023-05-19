@@ -54,12 +54,19 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       </div>
 
       <p className="my-4 text-sm text-gray-700">{post.prompt}</p>
-      <p
-        className="text-sm blue_gradient cursor-pointer"
-        onClick={() => handleTagClick && handleTagClick(post.tag)}
-      >
-        #{post.tag}
-      </p>
+
+      <div className="flex">
+        {post.tag.split(",").map((tag) => (
+          <div
+            key={tag}
+            className="text-sm text-blue-500 mr-2 hover:underline cursor-pointer"
+            onClick={() => handleTagClick(tag.trim())}
+          >
+            #{tag.trim()}
+          </div>
+        ))}
+      </div>
+
       {session?.user.id === post.author._id && pathName === "/profile" && (
         <div className="flex flex-end items-center mt-5 gap-5 border-t pt-3">
           <p
