@@ -22,8 +22,8 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer ">
           <Image
-            loader={() => post?.author.image}
-            src={post?.author.image}
+            loader={() => post?.author?.image}
+            src={post?.author?.image}
             alt="user"
             unoptimized={true}
             width={40}
@@ -33,9 +33,9 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           />
           <div className="flex flex-col">
             <h3 className="font-semibold text-gray-900">
-              {post?.author.username}
+              {post?.author?.username}
             </h3>
-            <p className="text-sm text-gray-500">{post?.author.email}</p>
+            <p className="text-sm text-gray-500">{post?.author?.email}</p>
           </div>
         </div>
 
@@ -67,7 +67,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         ))}
       </div>
 
-      {session?.user.id === post.author._id && pathName === "/profile" && (
+      {session?.user.id === post.author?._id && pathName === "/profile" && (
         <div className="flex flex-end items-center mt-5 gap-5 border-t pt-3">
           <p
             className="text-sm bg-green-400 text-white cursor-pointer border py-1 px-3 rounded-lg hover:bg-green-600 transition-all delay-50"

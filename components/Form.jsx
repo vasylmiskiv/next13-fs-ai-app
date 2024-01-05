@@ -7,7 +7,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit, isLoading }) => {
       <h1 className="head_text">
         <span className="blue_gradient">{type} Post</span>
       </h1>
-      <p className="desc text-left left max-w-md">{type} and share</p>
+      <p className="desc text-left">{type} and share</p>
       {isLoading ? (
         <div className="mt-20 mx-auto">
           <Loader />
