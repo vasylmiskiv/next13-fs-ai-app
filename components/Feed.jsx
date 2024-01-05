@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
 import Loader from "./Loader";
+
 import { IoMdClose } from "react-icons/io";
+
+import { debounce } from "@utils/debounce";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -26,40 +29,36 @@ const Feed = () => {
   const [isLoadingData, setIsLoadingData] = useState(false);
 
   useEffect(() => {
-    setIsLoadingData(true);
-
-    const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
-      const data = await response.json();
-
-      setPosts(data);
-      setIsLoadingData(false);
-    };
-
-    fetchPosts();
-    setIsLoadingData(false);
-  }, []);
-
-  useEffect(() => {
-    setIsLoadingData(true);
+    let delayDebounceFn;
 
     const fetchPostsByKeywords = async () => {
-      const response = await fetch(`/api/prompt`, {
-        method: "POST",
-        body: JSON.stringify({
-          keywords: searchText,
-        }),
-      });
+      try {
+        setIsLoadingData(true);
 
-      const data = await response.json();
+        const response = await fetch(`/api/prompt`, {
+          method: "POST",
+          body: JSON.stringify({
+            keywords: searchText,
+          }),
+        });
 
-      setPosts(data);
-      setIsLoadingData(false);
+        const data = await response.json();
+
+        setPosts(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoadingData(false);
+      }
     };
 
-    const delayDebounceFn = setTimeout(() => {
+    const debouncedSearch = debounce(fetchPostsByKeywords, 400);
+
+    if (searchText) {
+      delayDebounceFn = setTimeout(debouncedSearch, 400);
+    } else {
       fetchPostsByKeywords();
-    }, 800);
+    }
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchText]);

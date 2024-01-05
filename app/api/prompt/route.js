@@ -7,8 +7,13 @@ export const GET = async () => {
 
     const prompts = await Prompt.find({}).populate("author");
 
+    if (!prompts || prompts.length === 0) {
+      return new Response("No prompts found", { status: 404 });
+    }
+
     return new Response(JSON.stringify(prompts), { status: 200 });
   } catch (error) {
+    console.error(error);
     return new Response("Failed to fetch the prompts", { status: 500 });
   }
 };
